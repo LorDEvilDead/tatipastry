@@ -12,10 +12,10 @@ RUN mkdir ${APP_ROOT}
 WORKDIR ${APP_ROOT}
 RUN gem install bundler:${BUNDLER_VERSION}
 
-COPY Gemfile Gemfile.lock ./
+COPY ./backend/Gemfile* .
 RUN bundle check || bundle install
 
-COPY . .
+COPY ./backend .
 
 EXPOSE 3000
 CMD [ "bundle", "exec", "puma", "config.ru" ]
