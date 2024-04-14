@@ -1,0 +1,6 @@
+#!/bin/bash
+
+set -e
+
+command="docker compose run --rm frontend /bin/bash -c 'yarn ${@}'"
+eval $command
