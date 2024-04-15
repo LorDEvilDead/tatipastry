@@ -1,4 +1,4 @@
-FROM node:20-buster
+FROM node:21 AS build-stage
 
 ENV APP_ROOT=/frontend
 
@@ -6,13 +6,13 @@ RUN mkdir ${APP_ROOT}
 
 WORKDIR ${APP_ROOT}
 
-COPY package*.json ./
+COPY ./frontend/package*.json .
 
-RUN npm install
+RUN npm install  -g npm@10.5.2
 
-COPY . .
+COPY ./frontend .
 
-RUN npm run build
+RUN npm run dev
 
 FROM nginx:1.24-alpine
 
