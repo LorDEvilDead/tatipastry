@@ -12,4 +12,5 @@ RUN npm install  -g npm@10.5.2
 
 COPY ./frontend .
 
+RUN yarn add --dev vite
 RUN npm run build

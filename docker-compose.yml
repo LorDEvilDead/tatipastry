@@ -26,9 +26,10 @@ services:
       context: .
       dockerfile: docker/development/frontend.Dockerfile
     volumes:
-      - ./frontend:/frontend
-      - ./frontend/node_modules:/frontend/node_modules
-    command: yarn dev --port 3001 --host 0.0.0.0
+      - .:/app
+      - /app/node_modules
+
+    command: npm run dev -- --port 3001 --host 0.0.0.0
     env_file:
       - ./frontend/.env
     ports:
