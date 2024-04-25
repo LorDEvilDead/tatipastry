@@ -3,10 +3,9 @@
 	"version": "0.0.1",
 	"private": true,
 	"scripts": {
-		"dev": "vite dev",
+		"dev": "vite dev --port 3001",
 		"build": "vite build",
 		"preview": "vite preview",
-		"test": "npm run test:integration && npm run test:unit",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"lint": "prettier --check . && eslint .",
@@ -34,8 +33,9 @@
 		"vite": "^5.0.3",
 		"vitest": "^1.2.0"
 	},
-	"optionalDependencies": {
-    "@rollup/rollup-linux-x64-gnu": "4.6.1"
+	"dependencies": {
+    "@sveltejs/adapter-node": "^5.0.1"
   },
-	"type": "module"
+	"type": "module",
+	"packageManager": "yarn@1.22.19"
 }
