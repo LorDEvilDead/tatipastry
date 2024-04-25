@@ -1,4 +1,4 @@
-FROM node:21
+FROM node:20-buster
 
 ENV APP_ROOT=/frontend
 
@@ -8,8 +8,8 @@ WORKDIR ${APP_ROOT}
 
 COPY ./frontend/package*.json .
 
-RUN npm install  -g npm@10.5.2
+RUN yarn install
 
 COPY ./frontend .
 
-RUN npm run build
+RUN yarn build
