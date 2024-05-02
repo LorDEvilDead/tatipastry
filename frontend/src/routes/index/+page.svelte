@@ -1,19 +1,13 @@
 <script>
-    import { onMount } from 'svelte';
-  
-    let message = '';
-  
-    onMount(async () => {
-      const response = await fetch('/index');
-      if (response.ok) {
-        message = await response.text();
-      } else {
-        message = 'Ошибка при получении данных';
-      }
-    });
-  </script>
-  
-  <main>
-    <h1>{message}</h1>
-  </main>
-  
+  import { onMount } from 'svelte';
+
+  let message = '';
+
+  onMount(() => {
+    fetch('http://localhost:3000/index')
+      .then(response => response.json())
+      .then(data => message = data.message);
+  });
+</script>
+
+<p>{message}</p>
