@@ -1,9 +1,8 @@
 import { onMount } from 'svelte';
-import { messageStore } from './store'; // Импортируйте messageStore из вашего файла store.js
 
 onMount(async () => {
   try {
-    const response = await fetch('/messages');
+    const response = await ('http://localhost:3000//messages');
     if (response.ok) {
       const data = await response.text();
       messageStore.set(data);
