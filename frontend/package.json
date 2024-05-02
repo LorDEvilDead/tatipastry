@@ -34,8 +34,8 @@
 		"vitest": "^1.2.0"
 	},
 	"dependencies": {
-    "@sveltejs/adapter-node": "^5.0.1"
-  },
+		"@sveltejs/adapter-node": "^5.0.1"
+	},
 	"type": "module",
 	"packageManager": "yarn@1.22.19"
 }
