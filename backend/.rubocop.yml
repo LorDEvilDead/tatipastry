@@ -1,0 +1,12 @@
+require:
+  - rubocop-rspec
+  - rubocop-rails
+
+RSpec/MultipleMemoizedHelpers:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+AllCops:
+  NewCops: enable
