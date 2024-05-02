@@ -4,7 +4,7 @@
     let message = '';
   
     onMount(async () => {
-      const response = await fetch('/messages');
+      const response = await fetch('/index');
       if (response.ok) {
         message = await response.text();
       } else {
