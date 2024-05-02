@@ -3,3 +3,5 @@
 set -e
 
 docker compose build
+
+bin/backend/rails db:prepare
