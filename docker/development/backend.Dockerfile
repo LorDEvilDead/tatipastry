@@ -14,6 +14,7 @@ RUN gem install bundler:${BUNDLER_VERSION}
 
 COPY ./backend/Gemfile* .
 RUN bundle check || bundle install
+RUN rails generate rspec:install
 
 COPY ./backend .
 
