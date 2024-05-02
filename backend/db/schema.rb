@@ -25,4 +25,16 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_06_153556) do
     t.index "lower((email)::text)", name: "index_users_on_lower_email", unique: true
   end
 
+  create_table "products", force: :cascade do |t|
+    t.decimal "price"
+    t.integer "weight"
+    t.string "consist"
+    t.text "disription"
+    t.string "photo"
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_products_on_name"
+  end
+
 end
