@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get 'index', to: 'messages#index'
   resources :users
 
+  resources :products
   # Defines the root path route ("/")
   # root "posts#index"
 end
