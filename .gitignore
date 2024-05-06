@@ -1,3 +1,4 @@
 /backend/.env
 /frotnend/.env
 yarn-error.log
+.idea
