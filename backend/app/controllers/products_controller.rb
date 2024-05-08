@@ -40,7 +40,7 @@ class ProductsController < ApplicationController
     end
 
     def product_params
-        params.rquire(name: product_name).permit(price: product_price, 
+        params.require(name: product_name).permit(price: product_price, 
         weight: product_weight, 
         consist: product_consist,
         disription: product_disription,
