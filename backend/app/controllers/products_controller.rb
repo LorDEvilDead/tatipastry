@@ -7,6 +7,7 @@ class ProductsController < ApplicationController
         cteate_product
     end
 
+
     def create
         case product_creation
         in Success(product)
@@ -16,15 +17,39 @@ class ProductsController < ApplicationController
         end
     end
 
- 
-    
+
+    def update
+        case set_product
+        in Success(product)
+            render json: prepare_json(product), status :updated
+        in Failure
+            render json: { error: error.messages }, status :unprocessable_entity
+        end
+    end
+
+
     def show
         id = params.extract_value(:id)
         @product = product.find(id)
     end
+
+
+    def index
+        @products = Product.all
+        
+        render json @products
+    end
+
+    def destroy
+    @product.destroy
+    end
     
     private
     attr_reader :params, :owner
+
+    def set_product
+        @product = Product.find(product_params[:id])
+    end
     
     def create_product
         product.owner_id = owner.id
@@ -40,7 +65,8 @@ class ProductsController < ApplicationController
     end
 
     def product_params
-        params.require(name: product_name).permit(price: product_price, 
+        params.require(name: product_name).permit(id: product_id,
+        price: product_price, 
         weight: product_weight, 
         consist: product_consist,
         disription: product_disription,
