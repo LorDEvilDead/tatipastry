@@ -1,13 +1,6 @@
 class ProductsController < ApplicationController
     include Dry::Monads::Result::Mixin
 
-    #replace to monades
-    def call(params:, owner:)
-        @params = params
-        @user = user
-        cteate_product
-    end
-
     #POST /products
     def create
         case product_creation
@@ -48,24 +41,14 @@ class ProductsController < ApplicationController
     
     private
     #not sure about that
-    attr_reader :params, :owner
+    attr_reader :params, :user
 
     # Use callbacks to share common setup or constraints between actions.
     def set_product
         @product = Product.find(product_params[:id])
     end
-    
-    #need realise monades
-    def create_product
-        product.owner_id = owner.id
-        product.save ? Success(product) : Failure(product.errors)
-    end
 
-    #replace to service in next iteration
-    def product
-        @product ||= Product.new(params)
-    end
-    # need realise monads
+    #call monades
     def product_creation
     Products::Create.new.call(params: product_params)
     end
