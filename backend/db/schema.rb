@@ -27,10 +27,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_06_153556) do
 
   create_table "products", force: :cascade do |t|
     t.decimal "price"
-    t.integer "weight"
-    t.string "consist"
-    t.text "disription"
-    t.string "photo"
+    t.integer "portion_weight_grams"
+    t.string "ingredients"
+    t.text "desription"
+    t.string "image"
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

@@ -74,9 +74,9 @@ class ProductsController < ApplicationController
     def product_params
         params.require(name: product_name).permit(id: product_id,
         price: product_price, 
-        weight: product_weight, 
-        consist: product_consist,
-        disription: product_disription,
-        photo: product_photo)
+        portion_weight_grams: product_weight, 
+        ingredients: product_ingredients,
+        desription: product_desription,
+        image: product_image)
     end
 end
