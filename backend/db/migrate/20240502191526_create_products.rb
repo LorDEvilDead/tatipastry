@@ -4,10 +4,10 @@ class CreateProducts < ActiveRecord::Migration[7.1]
   def change
     create_table :products do |t|
       t.decimal :price
-      t.integer :weight
-      t.string :consist
-      t.text :disription
-      t.string :photo
+      t.integer :portion_weight_grams
+      t.string :ingredients
+      t.text :desription
+      t.string :image
       t.string :name
 
       t.timestamps
