@@ -1,22 +1,23 @@
 class ProductsController < ApplicationController
+    before_action :set_product, only: %i[show update destroy]
 
     #GET /products
     def index
-        @products = Product.all
+        products = Product.all
         
-        render json: @products
+        render json: products.to_json(only: [:image, :price, :name, :portion_weight_grams, :ingredients])
     end
 
     #GET /products/1
     def show 
-        render json: @product
+        render json: @product.to_json(only: [:price, :portion_weight_grams, :ingredients, :desription, :image, :name])
     end
 
     #POST /products
     def create 
-        @product = Product.new(product_params)
-        if @product.save
-            render json: @gproduct, status: :created, location: @product
+        product = Product.new(product_params)
+        if product.save
+            render json: @product, status: :created, location: @product
         else 
             render json: @product.errors, status: :unprocessable_entity
         end
