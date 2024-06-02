@@ -10,16 +10,16 @@ class ProductsController < ApplicationController
 
     #GET /products/1
     def show 
-        render json: @product.to_json(only: [:price, :portion_weight_grams, :ingredients, :desription, :image, :name])
+         render json: @product.to_json(only: [:price, :portion_weight_grams, :ingredients, :desription, :image, :name])
     end
 
     #POST /products
     def create 
         product = Product.new(product_params)
         if product.save
-            render json: @product, status: :created, location: @product
+            render json: product, status: :created, location: product
         else 
-            render json: @product.errors, status: :unprocessable_entity
+            render json: product.errors, status: :unprocessable_entity
         end
     end
 
@@ -47,3 +47,4 @@ class ProductsController < ApplicationController
     def group_params
         params.require(:product).permit(:price, :portion_weight_grams, :ingredients, :desription, :image, :name)
     end
+end
