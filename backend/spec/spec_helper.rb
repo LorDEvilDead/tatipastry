@@ -92,4 +92,5 @@ RSpec.configure do |config|
   #   # as the one that triggered the failure.
   #   Kernel.srand config.seed
   # Config spec to use get request test
+  config.order = :random
 end
