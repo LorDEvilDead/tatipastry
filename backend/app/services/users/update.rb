@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Users
-  class Update
+  class Update < Core::Service
     def call(id, params)
       @user = User.find(id)
       @params = params

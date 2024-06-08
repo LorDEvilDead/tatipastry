@@ -21,4 +21,4 @@ production:
   <<: *default
   database: tatipastry_production
   username: tatipastry
-  password: <%= ENV["FLIGHT_NUMBERS_DATABASE_PASSWORD"] %>
+  password: <%= ENV["TATIPASTRY_DATABASE_PASSWORD"] %>

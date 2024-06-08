@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Users
-  class Destroy
+  class Destroy < Core::Service
     def call(id)
       @user = User.find(id)
       delete_user

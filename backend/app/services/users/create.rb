@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Users
-  class Create
+  class Create < Core::Service
     def call(params)
       @params = params
       user.save ? UsersSerializer.new(user).serializable_hash[:data][:attributes] : false
