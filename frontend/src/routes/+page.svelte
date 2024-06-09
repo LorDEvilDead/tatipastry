@@ -1,2 +1,13 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<script>
+	import { onMount } from 'svelte';
+
+	let message = '';
+
+	onMount(() => {
+		fetch('http://localhost:3000/index')
+			.then((response) => response.json())
+			.then((data) => (message = data.message));
+	});
+</script>
+
+<p>{message}</p>

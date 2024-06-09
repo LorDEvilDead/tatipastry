@@ -1,0 +1,9 @@
+#!/bin/bash
+
+set -e
+
+bin/backend/lint
+bin/backend/test
+
+bin/frontend/lint
+bin/frontend/check
