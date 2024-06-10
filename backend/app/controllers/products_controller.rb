@@ -1,50 +1,50 @@
 class ProductsController < ApplicationController
-    before_action :set_product, only: %i[show update destroy]
-
-    #GET /products
-    def index
-        products = Product.all
-        
-        render json: products.to_json(only: [:image, :price, :name, :portion_weight_grams, :ingredients])
+    def index 
+        render json: fetch_product_list, status: :ok
     end
 
-    #GET /products/1
     def show 
-         render json: @product.to_json(only: [:price, :portion_weight_grams, :ingredients, :desription, :image, :name])
+        find_product
+        @product ? (render json: @product, status: :ok) : (head :not_found)
     end
 
-    #POST /products
-    def create 
-        product = Product.new(product_params)
-        if product.save
-            render json: product, status: :created, location: product
-        else 
-            render json: product.errors, status: :unprocessable_entity
-        end
+    def create
+        create_product(product_params)
+        @created_product ? (render json: @created_product, status: :created) : (head :bad_request)
     end
 
-    #PUT/PATCH /products/1
     def update
-        if @product.update(product_params)
-            render json: @product
-        else 
-            render json: @product.errors, status: :unprocessable_entity
-        end
+        update_product(product_params)
+        @updated_product ? (render json: @updated_product, status: :updated) : (head :bad_request)
     end
 
-    #DELETE /products/1
-    def destroy
-        @product.destroy
+    def destroy 
+        destroy_product ? (head :ok) : (head :unprocessable_entity)
     end
 
     private
-    #Use callbacks to share common setup or constrains between actions.
-    def set_product
-        @product = product.find(params[:id])
+
+    def product_params
+        params.require(:product).permit(:price, :portion_weight_grams, :ingredients, :desription, :image, :name, :id)
     end
 
-    #only allow a list of trusted parameters though.
-    def product_params
-        params.require(:product).permit(:price, :portion_weight_grams, :ingredients, :desription, :image, :name)
+    def fetch_product_list
+        Products::Fetch.new.call
+    end
+
+    def find_product
+        @product = Products:Fetch.new.call(params:[id])
+    end
+
+    def create_product(product_params)
+        @created_product = Products::Create.new.call(product_params)
+    end
+
+    def update_product(product_params)
+        Products::Update.new.call(params:[id], product_params)
+    end
+
+    def destroy_product
+        Products::Destroy.new.call(params[:id])
     end
 end

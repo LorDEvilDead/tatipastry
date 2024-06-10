@@ -2,37 +2,37 @@
 
 require 'rails_helper'
 
-RSpec.describe Product, :type => :model do
-  subject {
-    described_class.new(name: "cupcake")
-  }
+RSpec.describe Product do
+  subject do
+    described_class.new(name: 'cupcake')
+  end
 
-  describe "Validations" do
-    it "is valid with valid attributes" do
+  describe 'Validations' do
+    it 'is valid with valid attributes' do
       expect(subject).to be_valid
     end
 
-    it "is not valid without a name" do
+    it 'is not valid without a name' do
       subject.name = nil
-      expect(subject).to_not be_valid
+      expect(subject).not_to be_valid
     end
 
     # 106 symbols in string
-    it "is not valid with > maximum symbols" do
-      subject.name = "so many symbols with whitespace and now 40 symbols oops now 59? no 66... 75 it seems like true and now 106"
-      expect(subject).to_not be_valid
+    it 'is not valid with > maximum symbols' do
+      subject.name = 'so many symbols with whitespace and now 40 symbols oops now 59? no 66... 75 it seems like true and now 106'
+      expect(subject).not_to be_valid
     end
-    
+
     # 100 symbols
-    it "is valid with = maximum symbols" do
-      subject.name = "so many symbols with whitespace and now 40 symbols oops now 59? no 66... 75 it seems like true a 100"
+    it 'is valid with = maximum symbols' do
+      subject.name = 'so many symbols with whitespace and now 40 symbols oops now 59? no 66... 75 it seems like true a 100'
       expect(subject).to be_valid
     end
 
     # 101 symbols
-    it "is valid with = maximum symbols" do
-      subject.name = "so many symbols with whitespace and now 40 symbols oops now 59? no 66... 75 it seems like true as 101"
-      expect(subject).to_not be_valid
+    it 'is valid with = maximum symbols' do
+      subject.name = 'so many symbols with whitespace and now 40 symbols oops now 59? no 66... 75 it seems like true as 101'
+      expect(subject).not_to be_valid
     end
   end
 end
