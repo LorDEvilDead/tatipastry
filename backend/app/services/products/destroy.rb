@@ -3,7 +3,7 @@
 module Products
   class Destroy < Core::Service
     def call(id)
-      @product = product.find(id)
+      @product = Product.find(id)
       delete_product
     rescue ActiveRecord::RecordNotFound then false
     end

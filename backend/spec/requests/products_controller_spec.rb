@@ -42,13 +42,13 @@ RSpec.describe ProductsController do
   describe 'POST /product' do
     let(:name) { Faker::Coffee.blend_name }
     let(:price) { Faker::Number.decimal(l_digits: 2, r_digits: 2) }
-    let(:weight) { Faker::Types.rb_integer }
-    let(:consist) { Faker::Coffee.notes }
-    let(:desription) { Faker::Food.description }
+    let(:portion_weight_grams) { Faker::Types.rb_integer }
+    let(:ingredients) { Faker::Coffee.notes }
+    let(:description) { Faker::Food.description }
     let(:image) { Faker::Types.rb_string }
-    let(:params) { { name:, price:, weight:, consist:, description:, image: } }
+    let(:params) { { name:, price:, portion_weight_grams:, ingredients:, description:, image: } }
 
-    before{post('/products', params:)}
+    before { post('/products', params:) }
 
     it 'returns created status' do
       expect(response).to have_http_status(:created)

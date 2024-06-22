@@ -15,7 +15,7 @@ module Products
     private
 
     def product
-      @product ||= Product.save(params)
+      @product ||= Product.new(@params)
     end
   end
 end

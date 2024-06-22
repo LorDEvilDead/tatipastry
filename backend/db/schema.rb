@@ -18,7 +18,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_06_153556) do
     t.decimal "price"
     t.integer "portion_weight_grams"
     t.string "ingredients"
-    t.text "desription"
+    t.text "description"
     t.string "image"
     t.string "name"
     t.datetime "created_at", null: false

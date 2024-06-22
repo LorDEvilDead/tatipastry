@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe Products::Fetch do
   describe 'call' do
-    before { create_list(:Product, 4) }
+    before { create_list(:product, 4) }
 
     it 'returns list of product' do
       expect(described_class.new.call.last[:name]).to eq(Product.last.name)

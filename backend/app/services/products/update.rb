@@ -3,21 +3,16 @@
 module Products
   class Update < Core::Service
     def call(id, params)
-      product = product.find(id)
+      @product = Product.find(id)
       @params = params
-    rescue ActiveRecord::RecordNotFound then
-      if update_product.save
-        ProductsSerializer.new(product,
-                               { params: { detailed_view: true } }).serializable_hash[:data][:attributes]
-      else
-        false
-      end
+      update_product
+    rescue ActiveRecord::RecordNotFound then false
     end
 
     private
 
     def update_product
-      product.update(params)
+      @product.update(@params)
     end
   end
 end

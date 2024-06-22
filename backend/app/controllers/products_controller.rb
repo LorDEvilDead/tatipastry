@@ -27,7 +27,7 @@ class ProductsController < ApplicationController
   private
 
   def product_params
-    params.require(:product).permit(:price, :portion_weight_grams, :ingredients, :desription, :image, :name, :id)
+    params.require(:product).permit(:price, :portion_weight_grams, :ingredients, :description, :image, :name, :id)
   end
 
   def fetch_product_list
