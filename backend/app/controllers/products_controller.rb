@@ -16,8 +16,7 @@ class ProductsController < ApplicationController
   end
 
   def update
-    update_product(product_params)
-    @updated_product ? (render json: @updated_product, status: :updated) : (head :bad_request)
+    update_product(product_params) ? (head :no_content) : (head :unprocessable_entity)
   end
 
   def destroy
@@ -35,7 +34,7 @@ class ProductsController < ApplicationController
   end
 
   def find_product
-    @product = Products::Fetch.new.call(params[:id])
+    @product = Products::Show.new.call(params[:id])
   end
 
   def create_product(product_params)

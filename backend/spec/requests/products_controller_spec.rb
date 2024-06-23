@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
-RSpec.describe ProductsController do
+require 'rails_helper'
+
+RSpec.describe 'ProductsController' do
   describe 'GET /products' do
     before do
       create_list(:product, 10)
@@ -11,13 +13,13 @@ RSpec.describe ProductsController do
       expect(response).to have_http_status(:ok)
     end
 
-    it 'returns 5 instances' do
-      expect(response.parsed_body.length).to eq(5)
+    it 'returns 10 instances' do
+      expect(response.parsed_body.length).to eq(10)
     end
   end
 
-  describe 'GET /product/:id' do
-    let(:product) { create(product) }
+  describe 'GET /products/:id' do
+    let(:product) { create(:product) }
     let(:id) { product.id }
 
     before { get("/products/#{id}") }
@@ -27,7 +29,7 @@ RSpec.describe ProductsController do
     end
 
     it 'return the product' do
-      expect(response.parsed_body['name']).to eq(user.email)
+      expect(response.parsed_body['name']).to eq(product.name)
     end
 
     context 'when product not found' do
@@ -46,7 +48,7 @@ RSpec.describe ProductsController do
     let(:ingredients) { Faker::Coffee.notes }
     let(:description) { Faker::Food.description }
     let(:image) { Faker::Types.rb_string }
-    let(:params) { { name:, price:, portion_weight_grams:, ingredients:, description:, image: } }
+    let(:params) { { product: { name:, price:, portion_weight_grams:, ingredients:, description:, image: } } }
 
     before { post('/products', params:) }
 
@@ -62,7 +64,7 @@ RSpec.describe ProductsController do
       let(:name) { ' ' }
 
       it 'returns an error' do
-        expect(response).to have_http_status(bad_request)
+        expect(response).to have_http_status(:bad_request)
       end
     end
   end
@@ -70,13 +72,12 @@ RSpec.describe ProductsController do
   describe 'PUT /products/:id' do
     let(:product) { create(:product) }
     let(:name) { "Updated#{product.name}" }
-
     let(:params) { { product: { name: } } }
 
     before { put("/products/#{product.id}", params:) }
 
     it 'returns no content status' do
-      expect(Product.find).to have_http_status(:no_content)
+      expect(response).to have_http_status(:no_content)
     end
 
     it 'updates product name' do
