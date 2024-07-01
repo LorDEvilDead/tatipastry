@@ -3,36 +3,33 @@
 require 'rails_helper'
 
 RSpec.describe Product do
-  subject(:product) do
-    described_class.new(name: 'cupcake')
+  subject(:product) { described_class.create(params) }
+
+  let(:params) { { name:, price:, portion_weight_grams:, ingredients: } }
+  let(:name) { 'name' }
+  let(:price) { 10.00 }
+  let(:portion_weight_grams) { 1000 }
+  let(:ingredients) { 'ingredients' }
+
+  it 'creates a product' do
+    expect(product.name).to eq 'name'
   end
 
-  describe 'Validations' do
-    it 'is valid with valid attributes' do
-      expect(product).to be_valid
-    end
+  describe 'validations' do
+    it { is_expected.to validate_presence_of(:name) }
+    it { is_expected.to allow_value('name').for(:name) }
+    it { is_expected.to validate_length_of(:name).is_at_most(100) }
 
-    it 'is not valid without a name' do
-      product.name = nil
-      expect(product).not_to be_valid
-    end
+    it { is_expected.to validate_presence_of(:price) }
+    it { is_expected.to allow_value(10.05).for(:price) }
+    it { is_expected.not_to allow_value('a string').for(:price) }
 
-    # 106 symbols in string
-    it 'is not valid with > maximum symbols' do
-      product.name = 'so many symbols with whitespace and now 40 symbols oops now 59? no 66... 75 it seems like true and now 106'
-      expect(product).not_to be_valid
-    end
+    it { is_expected.to validate_presence_of(:portion_weight_grams) }
+    it { is_expected.to allow_value(100).for(:portion_weight_grams) }
+    it { is_expected.not_to allow_value('string').for(:portion_weight_grams) }
+    it { is_expected.not_to allow_value(5.2).for(:portion_weight_grams) }
 
-    # 100 symbols
-    it 'is valid with = maximum symbols' do
-      product.name = 'so many symbols with whitespace and now 40 symbols oops now 59? no 66... 75 it seems like true a 100'
-      expect(product).to be_valid
-    end
-
-    # 101 symbols
-    it 'is valid with = maximum symbols' do
-      product.name = 'so many symbols with whitespace and now 40 symbols oops now 59? no 66... 75 it seems like true as 101'
-      expect(product).not_to be_valid
-    end
+    it { is_expected.to validate_presence_of(:ingredients) }
+    it { is_expected.to allow_value('igredients').for(:ingredients) }
   end
 end

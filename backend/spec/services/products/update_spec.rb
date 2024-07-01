@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-
 require 'rails_helper'
 
 RSpec.describe Products::Update do
@@ -8,8 +7,8 @@ RSpec.describe Products::Update do
     let(:id) { product.id }
     let(:params) { { name:, price:, portion_weight_grams:, ingredients:, description:, image: } }
     let(:name) { "updated#{product.name}" }
-    let(:price) { "updated#{product.price}" }
-    let(:portion_weight_grams) { "updated#{product.portion_weight_grams}" }
+    let(:price) { Faker::Number.decimal(l_digits: 2, r_digits: 2) }
+    let(:portion_weight_grams) { Faker::Types.rb_integer }
     let(:ingredients) { "updated#{product.ingredients}" }
     let(:description) { "updated#{product.description}" }
     let(:image) { "updated#{product.image}" }

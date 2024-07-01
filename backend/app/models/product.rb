@@ -2,9 +2,7 @@
 
 class Product < ApplicationRecord
   validates :name, presence: true, length: { maximum: 100 }
-  # validates :price
-  # validates :portion_weight_grams
-  # validates :ingredients
-  # validates :description
-  # validates :image
+  validates :portion_weight_grams, presence: true, numericality: { only_integer: true }
+  validates :ingredients, presence: true
+  validates :price, numericality: true, presence: true
 end

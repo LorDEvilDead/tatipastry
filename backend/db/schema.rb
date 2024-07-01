@@ -15,12 +15,12 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_06_153556) do
   enable_extension "plpgsql"
 
   create_table "products", force: :cascade do |t|
-    t.decimal "price" #обязательное поле, только числа
-    t.integer "portion_weight_grams" #обязательно поле, только целые числа
-    t.string "ingredients" #обязательно поле, минимум 10 символов, только строки
-    t.text "description" #не обязательно поле, только строки
-    t.string "image" #только строка, необязательное поле 
-    t.string "name" #обязательное поле минимум 5 символов, только строки
+    t.decimal "price"
+    t.integer "portion_weight_grams"
+    t.string "ingredients"
+    t.text "description"
+    t.string "image"
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_products_on_name"
