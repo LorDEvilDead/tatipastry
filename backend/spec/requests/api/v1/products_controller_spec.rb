@@ -2,11 +2,11 @@
 
 require 'rails_helper'
 
-RSpec.describe 'ProductsController' do
+RSpec.describe Api::V1::ProductsController do
   describe 'GET /products' do
     before do
       create_list(:product, 10)
-      get('/products')
+      get('/api/v1/products')
     end
 
     it 'return ok status' do
@@ -22,7 +22,7 @@ RSpec.describe 'ProductsController' do
     let(:product) { create(:product) }
     let(:id) { product.id }
 
-    before { get("/products/#{id}") }
+    before { get("/api/v1/products/#{id}") }
 
     it 'return ok status' do
       expect(response).to have_http_status(:ok)
@@ -50,7 +50,7 @@ RSpec.describe 'ProductsController' do
     let(:image) { Faker::Types.rb_string }
     let(:params) { { product: { name:, price:, portion_weight_grams:, ingredients:, description:, image: } } }
 
-    before { post('/products', params:) }
+    before { post('/api/v1/products', params:) }
 
     it 'returns created status' do
       expect(response).to have_http_status(:created)
@@ -74,7 +74,7 @@ RSpec.describe 'ProductsController' do
     let(:name) { "Updated#{product.name}" }
     let(:params) { { product: { name: } } }
 
-    before { put("/products/#{product.id}", params:) }
+    before { put("/api/v1/products/#{product.id}", params:) }
 
     it 'returns no content status' do
       expect(response).to have_http_status(:no_content)
@@ -97,7 +97,7 @@ RSpec.describe 'ProductsController' do
     let(:product) { create(:product) }
     let(:id) { product.id }
 
-    before { delete("/products/#{id}") }
+    before { delete("/api/v1/products/#{id}") }
 
     it 'returns ok status' do
       expect(response).to have_http_status(:ok)

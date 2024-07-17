@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-RSpec.describe UsersController do
+RSpec.describe Api::V1::UsersController do
   describe 'GET /users' do
     before do
       create_list(:user, 5)
-      get('/users')
+      get('/api/v1/users')
     end
 
     it 'returns ok status' do
@@ -20,7 +20,7 @@ RSpec.describe UsersController do
     let(:user) { create(:user) }
     let(:id) { user.id }
 
-    before { get("/users/#{id}") }
+    before { get("/api/v1/users/#{id}") }
 
     it 'returns ok status' do
       expect(response).to have_http_status(:ok)
@@ -45,7 +45,7 @@ RSpec.describe UsersController do
     let(:email) { Faker::Internet.email }
     let(:params) { { user: { first_name:, last_name:, email: } } }
 
-    before { post('/users', params:) }
+    before { post('/api/v1/users', params:) }
 
     it 'returns created status' do
       expect(response).to have_http_status(:created)
@@ -69,7 +69,7 @@ RSpec.describe UsersController do
     let(:email) { "Updated#{user.email}" }
     let(:params) { { user: { email: } } }
 
-    before { put("/users/#{user.id}", params:) }
+    before { put("/api/v1/users/#{user.id}", params:) }
 
     it 'returns no content status' do
       expect(response).to have_http_status(:no_content)
@@ -92,7 +92,7 @@ RSpec.describe UsersController do
     let(:user) { create(:user) }
     let(:id) { user.id }
 
-    before { delete("/users/#{id}") }
+    before { delete("/api/v1/users/#{id}") }
 
     it 'returns ok status' do
       expect(response).to have_http_status(:ok)
