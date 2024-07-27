@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'SessionsController' do
+RSpec.describe Api::V1::Users::SessionsController do
   describe 'POST /signin' do
     let(:user) { create(:user) }
     let(:email) { Faker::Internet.email }

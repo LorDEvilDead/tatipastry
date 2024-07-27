@@ -34,12 +34,12 @@ class AddDeviseToUsers < ActiveRecord::Migration[7.1]
 
       # Uncomment below if timestamps were not included in your original model.
       # t.timestamps null: false
-     
     end
     add_index :users, :email,                unique: true
     add_index :users, :reset_password_token, unique: true
     # add_index :users, :confirmation_token,   unique: true
     # add_index :users, :unlock_token,         unique: true
+    add_index :users, 'LOWER(email)', unique: true, name: 'index_users_on_lower_email'
   end
 
   def self.down
