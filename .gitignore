@@ -1,5 +1,5 @@
 /backend/.env
 /frotnend/.env
 yarn-error.log
-
+backend/config/master.key
 .DS_Store
