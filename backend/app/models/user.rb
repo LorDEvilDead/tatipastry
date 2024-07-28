@@ -8,7 +8,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable, :jwt_authenticatable, jwt_revocation_strategy: self
   before_create :set_default_role_customer
 
-  attribute :role, :string
+  attribute :role, :string, default: 'customer'
   enum :role, %i[admin owner customer]
   validates :first_name, :email, :role, presence: true
   validates :last_name, :first_name, length: { maximum: 30 }

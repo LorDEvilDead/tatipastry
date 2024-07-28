@@ -3,7 +3,7 @@
 module Api
   module V1
     class UsersController < ApplicationController
-  # TODO: authorize admin and owner only to see list of all users
+      # TODO: authorize admin and owner only to see list of all users
       def index
         render json: fetch_users_list, status: :ok
       end
@@ -11,11 +11,6 @@ module Api
       def show
         find_user
         @user ? (render json: @user, status: :ok) : (head :not_found)
-      end
-
-      def create
-        create_user(user_params)
-        @created_user ? (render json: @created_user, status: :created) : (head :bad_request)
       end
 
       def update
@@ -34,10 +29,6 @@ module Api
 
       def find_user
         @user = Users::Show.new.call(params[:id])
-      end
-
-      def create_user(user_params)
-        @created_user = Users::Create.new.call(user_params)
       end
 
       def update_user(user_params)

@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 
 module RackSessionsFix
+
   extend ActiveSupport::Concern
+  
   class FakeRackSession < Hash
     def enabled?
       false
