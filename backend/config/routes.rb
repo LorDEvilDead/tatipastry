@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   get 'index', to: 'messages#index'
   namespace :api do
     namespace :v1 do
-      resources :users
+      # resources :users
       resources :products
       namespace :users do
         devise_for :users,
