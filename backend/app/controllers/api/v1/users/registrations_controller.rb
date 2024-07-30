@@ -5,6 +5,7 @@ module Api
     module Users
       class RegistrationsController < Devise::RegistrationsController
         include RackSessionsFix
+        require_dependency 'users/create'
         respond_to :json
         def create
           create_user(user_params)
@@ -15,6 +16,10 @@ module Api
 
         def create_user(user_params)
           @created_user = Users::Create.new.call(user_params)
+        end
+
+        def user_params
+          params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation)
         end
 
         def respond_with(current_user, _opts = [])
