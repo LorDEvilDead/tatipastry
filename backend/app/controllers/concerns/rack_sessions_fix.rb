@@ -1,9 +1,8 @@
 # frozen_string_literal: true
 
 module RackSessionsFix
-
   extend ActiveSupport::Concern
-  
+
   class FakeRackSession < Hash
     def enabled?
       false
@@ -17,6 +16,7 @@ module RackSessionsFix
     private
 
     def set_fake_session
+      Rails.logger.info 'Setting fake session'
       request.env['rack.session'] ||= FakeRackSession.new
     end
   end
