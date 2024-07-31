@@ -3,15 +3,16 @@
 require 'rails_helper'
 
 RSpec.describe Api::V1::Users::SessionsController do
-  describe 'POST /signin' do
+  describe 'POST /login' do
     let(:user) { create(:user) }
-    let(:email) { Faker::Internet.email }
-    let(:password) { 'Sawq4405' }
+    let(:email) { user.email }
+    let(:password) { user.password }
     let(:params) { { user: { email:, password: } } }
 
-    before { post('/signin', params:) }
+    before { post('/login', params:) }
 
-    it 'returns authorized status'
-    expect(response).to have_http_status(:ok)
+    it 'returns authorized status' do
+      expect(response).to have_http_status(:ok)
+    end
   end
 end
