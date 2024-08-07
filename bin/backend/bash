@@ -1,0 +1,6 @@
+#!/bin/bash
+
+set -e
+
+command="docker compose run --rm -it --entrypoint bash backend"
+eval $command

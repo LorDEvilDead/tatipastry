@@ -22,5 +22,9 @@ RUN bundle check || bundle install
 
 COPY ./backend .
 
+RUN useradd rails --create-home --shell /bin/bash && \
+    chown -R rails:rails db log storage tmp
+USER rails:rails
+
 EXPOSE 3000
 CMD [ "bundle", "exec", "puma", "config.ru" ]
