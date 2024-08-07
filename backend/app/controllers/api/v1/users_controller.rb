@@ -24,19 +24,19 @@ module Api
       private
 
       def fetch_users_list
-        Users::Fetch.new.call
+        ::Users::Fetch.new.call
       end
 
       def find_user
-        @user = Users::Show.new.call(params[:id])
+        @user = ::Users::Show.new.call(params[:id])
       end
 
       def update_user(user_params)
-        Users::Update.new.call(params[:id], user_params)
+        ::Users::Update.new.call(params[:id], user_params)
       end
 
       def destroy_user
-        Users::Destroy.new.call(params[:id])
+        ::Users::Destroy.new.call(params[:id])
       end
 
       def user_params
