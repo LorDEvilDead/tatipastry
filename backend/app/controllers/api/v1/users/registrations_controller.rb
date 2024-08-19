@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'pry'
 module Api
   module V1
     module Users
@@ -15,7 +16,7 @@ module Api
         private
 
         def create_user(user_params)
-          @created_user = Users::Create.new.call(user_params)
+          @created_user = ::Users::Create.new.call(user_params)
         end
 
         def user_params

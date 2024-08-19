@@ -39,31 +39,6 @@ RSpec.describe Api::V1::UsersController do
     end
   end
 
-  # describe 'POST /users' do
-  #   let(:first_name) { Faker::Name.first_name }
-  #   let(:last_name) { Faker::Name.last_name }
-  #   let(:email) { Faker::Internet.email }
-  #   let(:params) { { user: { first_name:, last_name:, email: } } }
-
-  #   before { post('/api/v1/users', params:) }
-
-  #   it 'returns created status' do
-  #     expect(response).to have_http_status(:created)
-  #   end
-
-  #   it 'creates user in database' do
-  #     expect(User.last.email).to eq(email)
-  #   end
-
-  #   context 'when email address is invalid' do
-  #     let(:email) { 'randomsetofchars!!!1' }
-
-  #     it 'returns an error' do
-  #       expect(response).to have_http_status(:bad_request)
-  #     end
-  #   end
-  # end
-
   describe 'PUT /users/:id' do
     let(:user) { create(:user) }
     let(:email) { "Updated#{user.email}" }
@@ -76,7 +51,7 @@ RSpec.describe Api::V1::UsersController do
     end
 
     it 'updates user first name' do
-      expect(User.find(user.id).email).to eq(email)
+      expect(User.find(user.id).email).to eq(email.downcase)
     end
 
     context 'when email address is invalid' do

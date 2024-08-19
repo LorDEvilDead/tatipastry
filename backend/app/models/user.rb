@@ -1,12 +1,13 @@
 # frozen_string_literal: true
 
+require 'pry'
 class User < ApplicationRecord
   include Devise::JWT::RevocationStrategies::JTIMatcher
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :jwt_authenticatable, jwt_revocation_strategy: self
-  before_create :set_default_role_customer
+  before_validation :set_default_role_customer, on: :create
 
   enum :role, %i[admin owner customer]
   validates :first_name, :email, :role, presence: true

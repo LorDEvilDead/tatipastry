@@ -308,6 +308,8 @@ GEM
     strscan (3.1.0)
     thor (1.3.1)
     timeout (0.4.1)
+    travel (0.2.3)
+      nokogiri
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
     unicode-display_width (2.5.0)
@@ -363,6 +365,7 @@ DEPENDENCIES
   rubocop-rails (~> 2.22)
   rubocop-rspec (~> 2.25)
   shoulda-matchers (~> 5.0)
+  travel
   tzinfo-data
   warden (= 1.2.9)
   warden-jwt_auth (= 0.10.0)
