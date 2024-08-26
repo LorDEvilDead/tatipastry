@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
-require 'pry'
 RSpec.describe Users::Update do
   describe 'call' do
     let(:user) { create(:user) }
@@ -11,7 +10,6 @@ RSpec.describe Users::Update do
 
     it 'updates the user' do
       described_class.new.call(id, params)
-      # binding.pry
       expect(User.find(id).email).to eq(email)
     end
 

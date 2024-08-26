@@ -5,7 +5,6 @@ module Api
     module Users
       class SessionsController < Devise::SessionsController
         include RackSessionsFix
-        # binding.pry
         respond_to :json
 
         private
