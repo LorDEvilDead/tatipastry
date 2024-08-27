@@ -1,11 +1,12 @@
 # frozen_string_literal: true
 
+require 'pry'
 FactoryBot.define do
   factory :user do
     first_name { Faker::Name.first_name }
     last_name { Faker::Name.last_name }
     email { Faker::Internet.email }
-    encrypted_password { Faker::Internet.password }
+    password { Faker::Internet.password }
   end
 
   factory :admin, parent: :user do
